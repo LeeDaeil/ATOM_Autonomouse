@@ -5,6 +5,7 @@ ATOM_Autonomous
 - 윤경민(gyeongmin@chosun.kr)
 - 이수봉(dltnqhd678@naver.com)
 - 김효진(kim05140@chosun.kr)
+- 띠로로
 #
 #
 Up
