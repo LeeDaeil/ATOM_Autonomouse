@@ -2,7 +2,7 @@
 ATOM_Autonomous
 # 참여자
 - 이대일(dleodlf1004@chosun.kr)
-- ..
+- 윤경민(gyeongmin@chosun.kr)
 - ..
 - ..
 # 
