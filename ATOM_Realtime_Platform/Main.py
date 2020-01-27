@@ -58,7 +58,7 @@ class ATOM_Simulator:
 
     def make_restart_file(self):
         start_line = f'= Restart\n100 restart transnt\n101 run\n102 si si\n103 -1\n' \
-                     f'202 {float(len(self.db))} 1.0e-7 0.05 23 200 5000 10000\n'
+                     f'202 {float(len(self.db))} 1.0e-7 0.05 23 200 500 1000\n'
         # -------- control line ---------------
         control_line = ''
 
