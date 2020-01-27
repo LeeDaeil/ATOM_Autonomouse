@@ -1,7 +1,7 @@
 import os
 import codecs
 import pandas as pd
-
+from ATOM_Realtime_Platform.RE_function import restart_function as rf
 
 class ATOM_Simulator:
     def __init__(self):
@@ -10,12 +10,15 @@ class ATOM_Simulator:
         self.atom_restart_file_path = '.\MARS\ATOM_restart.i'
         self.db_path = './DB.csv'
         self.db = pd.DataFrame()
+
+        self.rf = rf()
     # =============================================================================================================
 
     def remove_all(self, get_mode):
         if get_mode == 'start':
             # start
-            for remove_file in ['coupfl', 'jbinfo', 'outdta', 'plotfl', 'rstplt']:
+            for remove_file in ['coupfl', 'jbinfo', 'outdta', 'plotfl', 'rstplt', 'screen', 'read_steam_comment.o',
+                                'fort*']:
                 try:
                     os.remove(remove_file)
                 except:
@@ -57,7 +60,12 @@ class ATOM_Simulator:
         start_line = f'= Restart\n100 restart transnt\n101 run\n102 si si\n103 -1\n' \
                      f'202 {float(len(self.db))} 1.0e-7 0.05 23 200 5000 10000\n'
         # -------- control line ---------------
-        control_line = '\n'
+        control_line = ''
+
+        if 8 < len(self.db) <= 11:
+            control_line += self.rf.Comp_915(time=float(len(self.db)), state='On')
+        else:
+            control_line += self.rf.Comp_915(time=float(len(self.db)), state='Off')
 
         # -------------------------------------
         end_line = '.'
@@ -72,6 +80,7 @@ class ATOM_Simulator:
         print('Start_MARS')
         self.remove_all(get_mode='start')
         initial_output = os.popen(self.atom_stedy_path).read()
+        print(initial_output)
 
         # initial parameter setting
         self.make_para_str()
@@ -82,6 +91,7 @@ class ATOM_Simulator:
             # run
             self.remove_all(get_mode='restart')
             output = os.popen(self.atom_restart_path).read()
+            print(output)
             self.update_db()
             self.save_db()
             pass
