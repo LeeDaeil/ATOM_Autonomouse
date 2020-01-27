@@ -8,5 +8,5 @@ ATOM_Autonomous
 #
 [History]
 - 2020.01.27
-    - ATOM MARS-Code를 One-Step 씩 구동하도록 작성함.
+    - ATOM MARS-Code를 One-Step 씩 구동하도록 작성함. (제어도 가능)
 #
