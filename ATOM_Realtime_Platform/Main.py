@@ -58,14 +58,16 @@ class ATOM_Simulator:
 
     def make_restart_file(self):
         start_line = f'= Restart\n100 restart transnt\n101 run\n102 si si\n103 -1\n' \
-                     f'202 {float(len(self.db))} 1.0e-7 0.05 23 200 500 1000\n'
+                     f'201 {float(len(self.db)+100)} 1.0e-7 0.05 3 20 400 50000\n'
+                     # f'202 {float(len(self.db))} 1.0e-7 0.05 23 200 500 1000\n'
+
         # -------- control line ---------------
         control_line = ''
 
-        if 8 < len(self.db) <= 11:
-            control_line += self.rf.Comp_915(time=float(len(self.db)), state='On')
+        if 110 < len(self.db)+100 <= 120:
+            control_line += self.rf.Comp_915(time=float(len(self.db)+100), state='On')
         else:
-            control_line += self.rf.Comp_915(time=float(len(self.db)), state='Off')
+            control_line += self.rf.Comp_915(time=float(len(self.db)+100), state='Off')
 
         # -------------------------------------
         end_line = '.'
